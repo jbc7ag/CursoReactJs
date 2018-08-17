@@ -29,7 +29,6 @@ class Media extends Component{
         author:this.props.author
     }
 
-
     handleClick = (event) => {
         console.log(this.props.title);  
 
@@ -55,13 +54,13 @@ class Media extends Component{
             //<div style={styles.container}>
             <div className="Media" onClick={this.handleClick}>
                 <div className="Media-cover">
-                    <img className="Media-image" src={this.props.imagen}
+                    <img className="Media-image" src={this.props.cover}
                          alt="" 
                          width={260} 
                          height={160}
                     />
                     <h3 className="Media-title">{this.props.title}</h3>
-                    <p className="Media-author">{this.state.author} </p>
+                    <p className="Media-author">{this.props.author} </p>
 
                 </div>
 
@@ -76,7 +75,7 @@ class Media extends Component{
 //validamos las propiedes enviadas
 Media.propTypes={
 
-    imagen: PropTypes.string.isRequired,
+    cover: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     author: PropTypes.string.isRequired,
     type: PropTypes.oneOf(['video','audio'])
