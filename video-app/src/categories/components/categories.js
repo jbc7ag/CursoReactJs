@@ -1,55 +1,27 @@
-import React, {Component} from 'react';
+import React from 'react';
 import './categories.css'
-import PlayList from '../../playlist/components/playlist';
+import Category from './category';
 
 
 
-class Categories extends Component{
 
 
-    //metodos
-    render(){
-
-        console.log(this.props);
-
-        const categories=this.props.data.categories;
-
-        console.log(categories);
+function Categories (props){
 
         return (
 
-            <div>
+            <div className="Categories">               
                 {
-                    categories.map((item)=>{
+                  
+                    props.categories.map((item)=>{
 
-                     return  ( 
-                            <div key={item.id} className="Category">
-                                   
-                                    <div>
-                                        <h2 className="Category-title">{item.title}</h2>
-                                        <h3  className="Category-description">{item.description}</h3>
-                                    </div>
-                                    <div>
-                                         <PlayList data={item.playlist} />
-
-                                    </div>
-                              </div>
-                              )
-
-
-
-                    })
-
+                        return <Category key={item.id} {...item} />
+                    
+                     })            
                 }
       
             </div>
           )
-
-    }
-
-
-
-
 }
 
  //Exportamos el modulo
