@@ -5,7 +5,7 @@ import Home from '../pages/containers/home'
 import data from '../api.json'
 
 
-const app = document.getElementById('app'); //Donde se va renderizar
+const homeContainer = document.getElementById('home-container'); //Donde se va renderizar
 
 //Donde se renderiza el html.
-render(<Home data={data}/>,app);
+render(<Home data={data}/>,homeContainer);

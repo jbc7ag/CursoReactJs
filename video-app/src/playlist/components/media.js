@@ -5,37 +5,10 @@ import './media.css'
 
 class Media extends Component{
 
-    //Constructor de la clase
-    //constructor(props){
-    //    super(props);
-    //    this.handleClick=this.handleClick.bind(this);
-    //}
-    // handleClick(event){ //Manejamos el eveto click
-    //    console.log(event);
-    //}
     
-    //ES 6
-    //constructor(props){
-
-    //    super(props); 
-    //    this.state={
-    //        author:props.author
-    //    }
-    // }
-
-    //ES7
     state={
 
         author:this.props.author
-    }
-
-    handleClick = (event) => {
-        console.log(this.props.title);  
-
-        this.setState({
-            author:'Ricardo'
-
-        });
     }
 
     render(){ // html del componente UI
@@ -52,7 +25,7 @@ class Media extends Component{
         }
         return (
             //<div style={styles.container}>
-            <div className="Media" onClick={this.handleClick}>
+            <div className="Media" onClick={this.props.handleClick}>
                 <div className="Media-cover">
                     <img className="Media-image" src={this.props.cover}
                          alt="" 
