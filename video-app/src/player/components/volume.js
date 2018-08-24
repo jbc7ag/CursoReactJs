@@ -8,7 +8,7 @@ function Volume(props){
 
     return (
 
-            <button className="Volume">
+            <button className="Volume" onClick={props.onclickVolume}>
 
                         <VolumeIC 
                             size={25}
@@ -21,6 +21,7 @@ function Volume(props){
                   min={0}
                   max={1}
                   step={.05}
+                  onChange={props.onChangeVolume}
             
                 />
 

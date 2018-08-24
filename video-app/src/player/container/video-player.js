@@ -19,7 +19,9 @@ class VideoPlayer extends Component{
         pause:true,
         duration:0,
         currentTime:0,
-        loading:false
+        loading:false,
+        currentVoume:0,
+        mute:false
 
     }
 
@@ -79,8 +81,28 @@ class VideoPlayer extends Component{
         })
 
    }
+   onChangeVolume=(event)=>{
+       this.video.volume=event.target.value
 
+       this.setState({
+        currentVoume:event.target.value
+       })
+     
 
+   }
+
+   //REVISAR EVENTO QUE CAMBIA EL MUTE A FALSE
+   onclickVolume=(event)=>{
+
+      console.log("clic")
+
+       this.setState({
+
+           mute:!this.state.mute   
+       })
+
+       mute ? this.video.volume=0 :this.video.volume=this.setState.currentVoume
+   }
 
     render(){
 
@@ -115,7 +137,10 @@ class VideoPlayer extends Component{
                         value={this.state.currentTime}
                         handlerOnchangeProgress={this.handlerOnchangeProgress}
                     />
-                    <Volume />
+                    <Volume
+                        onChangeVolume={this.onChangeVolume}
+                        onclickVolume={this.onclickVolume}
+                     />
                 </Controls>
 
             </VideoPlayerLayout>
