@@ -8,12 +8,15 @@ function Volume(props){
 
     return (
 
-            <button className="Volume" onClick={props.onclickVolume}>
+            <button className="Volume">
+                <div onClick={props.onclickVolume}>
 
                         <VolumeIC 
                             size={25}
                             color="white"
                         />
+
+                </div>
 
             <div className="Volume-range">
 

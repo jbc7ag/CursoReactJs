@@ -16,11 +16,12 @@ class Home extends Component{
       
     }
 
-    handleOpenModal=(event)=>{
+    handleOpenModal=(media)=>{
 
         this.setState({
 
             modalVisible:true,
+            media
         });
 
     }
@@ -40,7 +41,7 @@ class Home extends Component{
                 <HandleError>
                         <HomeLayout>               
                         <Related />
-                        <VideoPlayer autoplay={false} />
+                      
                         <Categories categories={this.props.data.categories}
                                         handleOpenModal={this.handleOpenModal}
                         />
@@ -51,8 +52,13 @@ class Home extends Component{
                                 this.state.modalVisible &&             
                             
                                 <ModalContainer>
-                                    <Modal handleColseClick={this.handleColseModal}>
-                                            <h1> Esto es un portality </h1>
+                                    <Modal 
+                                        handleColseClick={this.handleColseModal}>
+                                            <VideoPlayer 
+                                                autoplay={true} 
+                                                src={this.state.media.src}
+                                                title={this.state.media.title}
+                                            />
                                     </Modal>
                                     
                                 </ModalContainer>

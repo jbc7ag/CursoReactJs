@@ -9,6 +9,7 @@ import formatterTime from '../../utilities/utilities'
 import ProgressBar from '../components/progresbar';
 import Spinner from '../components/spinner';
 import Volume from '../components/volume'
+import FullScreen from '../components/full-screen'
 
 
 
@@ -20,7 +21,7 @@ class VideoPlayer extends Component{
         duration:0,
         currentTime:0,
         loading:false,
-        currentVoume:0,
+        currentVolume:0,
         mute:false
 
     }
@@ -82,41 +83,73 @@ class VideoPlayer extends Component{
 
    }
    onChangeVolume=(event)=>{
+       
        this.video.volume=event.target.value
 
        this.setState({
-        currentVoume:event.target.value
+
+        currentVolume:event.target.value
+
        })
      
 
+       console.log( 'Current volume >> '+this.state.currentVolume);
    }
 
-   //REVISAR EVENTO QUE CAMBIA EL MUTE A FALSE
+  
    onclickVolume=(event)=>{
 
-      console.log("clic")
+      this.setState({
+        mute: !this.state.mute
+       })
+
 
        this.setState({
 
            mute:!this.state.mute   
        })
 
-       mute ? this.video.volume=0 :this.video.volume=this.setState.currentVoume
+       this.state.mute ? this.video.volume=0 :this.video.volume=this.state.currentVolume 
+
    }
+
+   handleFullscreenClick=(event)=>{
+
+        if(!document.webkitIsFullScreen){
+
+            this.player.webkitRequestFullscreen()
+
+        }else{
+
+            document.webkitExitFullscreen()
+        }   
+
+
+   }
+
+   setRef=(element)=>{
+
+    this.player=element;
+   }
+
+
 
     render(){
 
         return(
                     
-            <VideoPlayerLayout>
+            <VideoPlayerLayout
+                setRef={this.setRef}
+            >
                
-                <Title title="Soy un video"/> 
+                <Title title={this.props.title}/> 
+                
                 <Spinner
                     active={this.state.loading}
                 />    
                 <Video
                    pause={this.state.pause}
-                   src="http://download.blender.org/peach/bigbuckbunny_movies/BigBuckBunny_320x180.mp4"
+                   src={this.props.src}
                    autoplay={this.props.autoplay}
                    handlerOnLoadedMetadata={this.handlerOnLoadedMetadata}
                    handerOnTimeUpdate={this.handerOnTimeUpdate}
@@ -131,7 +164,8 @@ class VideoPlayer extends Component{
                         pause={this.state.pause}
                         handleClick={this.handleTooglePlay}
                     />
-                    <Timer duration={formatterTime(this.state.duration)} currentTime={formatterTime(this.state.currentTime)}/>
+                    <Timer  duration={formatterTime(this.state.duration)} 
+                            currentTime={formatterTime(this.state.currentTime)}/>
                     <ProgressBar
                         duration={this.state.duration}
                         value={this.state.currentTime}
@@ -141,6 +175,11 @@ class VideoPlayer extends Component{
                         onChangeVolume={this.onChangeVolume}
                         onclickVolume={this.onclickVolume}
                      />
+
+                     <FullScreen
+                     handleFullscreenClick={this.handleFullscreenClick}
+                     />
+
                 </Controls>
 
             </VideoPlayerLayout>

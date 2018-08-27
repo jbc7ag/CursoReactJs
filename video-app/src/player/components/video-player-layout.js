@@ -4,7 +4,7 @@ import '../components/video-player-layout.css'
 
 const VideoPlayerLayout=(props)=>(
 
-    <div className="VideoPlayer">
+    <div className="VideoPlayer" ref={props.setRef}>
 
         {props.children}
 
